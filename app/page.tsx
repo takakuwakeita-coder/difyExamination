@@ -26,21 +26,18 @@ export default function Home() {
   const [result, setResult] =
     useState("");
 
-  const buttonStyle: React.CSSProperties = {
+ const buttonStyle: React.CSSProperties = {
   display: "inline-block",
   padding: "12px 24px",
-  background:
-    "linear-gradient(135deg,#4E2DA8,#643AB8)",
+  background: "#4E2DA8",
   color: "#fff",
-  borderRadius: "8px",
+  borderRadius: "6px",
   cursor: "pointer",
-  marginBottom: "10px",
   fontWeight: 600,
   width: "160px",
   textAlign: "center",
-  border: "none",
   boxShadow:
-    "0 4px 20px rgba(78,45,168,0.25)"
+    "0 2px 6px rgba(0,0,0,0.15)"
 };
 
 
@@ -270,9 +267,9 @@ setResult(
         style={{
   width: "100%",
   padding: "16px",
-  background: "#4E2DA8",
-  color: "#fff",
-  border: "none",
+  background:"#ffffff",
+color:"#333",
+border:"1px solid #d9d9d9",
   borderRadius: "8px",
   fontSize: "16px",
   fontWeight: 700,
@@ -310,15 +307,17 @@ setResult(
                 <div
                   key={i}
                   style={{
-                    background:
-                      "#eef5ff",
-                    padding: "8px",
-                    marginTop: "5px",
-                    borderRadius:
-                      "8px",
-                    fontSize:
-                      "13px"
-                  }}
+  width:"100%",
+  padding:"16px",
+  background:"#ff9800",
+  color:"#fff",
+  border:"none",
+  borderRadius:"6px",
+  fontWeight:700,
+  fontSize:"16px",
+  cursor:"pointer"
+}}
+
                 >
                   📄 {x.name}
                 </div>

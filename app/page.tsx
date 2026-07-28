@@ -185,69 +185,70 @@ setResult(
       padding: "40px"
     }}
   >
-    {/* ヘッダーカード */}
+   {/* GARP Header */}
 
 <div
   style={{
     maxWidth: "1400px",
-    margin: "0 auto 30px auto",
-    background:
-      "rgba(255,255,255,0.95)",
-    backdropFilter:
-      "blur(10px)",
-    borderRadius: "24px",
-    padding: "24px 32px",
+    margin: "0 auto 20px auto",
+    background: "#4E2DA8",
+    borderRadius: "8px",
     boxShadow:
-      "0 12px 40px rgba(0,0,0,0.08)"
+      "0 4px 20px rgba(0,0,0,0.12)"
   }}
 >
   <div
     style={{
+      height: "72px",
       display: "flex",
       alignItems: "center",
-      gap: "24px"
+      padding: "0 24px"
     }}
   >
     <img
       src="/garp_logo.png"
       alt="GARP"
       style={{
-        height: "90px",
-        objectFit: "contain"
+        height: "46px",
+        background: "#fff",
+        padding: "4px 10px",
+        borderRadius: "4px"
       }}
     />
 
-    <div>
-      <h1
+    <div
+      style={{
+        marginLeft: "20px"
+      }}
+    >
+      <div
         style={{
-          margin: 0,
-          fontSize: "38px",
-          color: "#4c2ca3",
+          color: "#fff",
+          fontSize: "26px",
           fontWeight: 700
         }}
       >
         補助金経費審査AI
-      </h1>
+      </div>
 
       <div
         style={{
-          marginTop: "8px",
-          color: "#666",
-          fontSize: "15px"
+          color: "#ddd",
+          fontSize: "12px"
         }}
       >
         GARP申請審査プラットフォーム
       </div>
+    </div>
 
-      <div
-        style={{
-          marginTop: "4px",
-          color: "#888",
-          fontSize: "13px"
-        }}
-      >
-        AIによる証憑解析・経費審査・補助金適合性チェック
-      </div>
+    <div
+      style={{
+        marginLeft: "auto",
+        color: "#ddd",
+        fontSize: "13px"
+      }}
+    >
+      AIによる証憑解析・補助金審査
     </div>
   </div>
 </div>
@@ -380,18 +381,15 @@ setResult(
           onClick={runAudit}
           disabled={loading}
           style={{
-            width: "100%",
-            padding: "16px",
-            background:
-              "linear-gradient(135deg,#00c853,#009624)",
-            color: "#fff",
-            border: "none",
-            borderRadius: "12px",
-            fontSize: "18px",
-            cursor: "pointer",
-            boxShadow:
-              "0 4px 20px rgba(0,180,0,0.4)"
-          }}
+  width: "100%",
+  padding: "14px",
+  background: "#4E2DA8",
+  color: "#fff",
+  border: "none",
+  borderRadius: "4px",
+  fontSize: "16px",
+  cursor: "pointer"
+  }}
         >
           {loading
             ? "🤖 AI審査中..."
@@ -403,7 +401,8 @@ setResult(
       <div
         style={{
           background: "rgba(255,255,255,0.96)",
-          borderRadius: "20px",
+          borderRadius: "6px",
+          border: "1px solid #d9d9d9",
           padding: "30px",
           minHeight: "900px",
           width: "100%",
@@ -419,7 +418,9 @@ setResult(
         <div
           style={{
             lineHeight: "1.9",
-            fontSize: "15px"
+            fontSize: "15px",
+            border:"1px solid #d9d9d9",
+            
           }}
         >
           <ReactMarkdown

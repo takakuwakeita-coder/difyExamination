@@ -165,6 +165,12 @@ export default function Home() {
         補助金経費審査AI
       </h1>
 
+      <h3>
+
+{process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL || "NOT FOUND"}
+
+</h3>
+
       <hr />
 
       <h3>

@@ -2,7 +2,9 @@
 //hhhh
 "use client";
 
-import { useState } from "react";
+import React, {
+useState
+} from "react";
 import { Buffer } from "buffer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -24,20 +26,23 @@ export default function Home() {
   const [result, setResult] =
     useState("");
 
-  const buttonStyle = {
+  const buttonStyle: React.CSSProperties = {
   display: "inline-block",
   padding: "12px 24px",
-  background: "#4E2DA8",
+  background:
+    "linear-gradient(135deg,#4E2DA8,#643AB8)",
   color: "#fff",
   borderRadius: "8px",
   cursor: "pointer",
+  marginBottom: "10px",
   fontWeight: 600,
   width: "160px",
   textAlign: "center",
   border: "none",
   boxShadow:
-    "0 2px 8px rgba(78,45,168,0.35)"
+    "0 4px 20px rgba(78,45,168,0.25)"
 };
+
 
 
   const runAudit = async () => {

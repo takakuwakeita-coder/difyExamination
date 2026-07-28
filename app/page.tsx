@@ -7,8 +7,6 @@ import { Buffer } from "buffer";
 
 export default function Home() {
 
-  console.log("ENV CHECK");
-
   const [pdfFiles, setPdfFiles] =
     useState<FileList | null>(null);
 

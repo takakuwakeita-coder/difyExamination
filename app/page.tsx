@@ -322,6 +322,16 @@ export default function Home() {
       </div>
 
       {/* Main Area */}
+      <style jsx>{`
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+`}</style>
       <div
         style={{
           maxWidth: "1400px",
@@ -355,7 +365,19 @@ export default function Home() {
 
           <hr />
 
-          <h3>証憑PDF</h3>
+          <h3
+  style={{
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#4E2DA8",
+    marginTop: "24px",
+    marginBottom: "10px",
+    borderLeft: "5px solid #4E2DA8",
+    paddingLeft: "10px"
+  }}
+>
+  📄 証憑PDF
+</h3>
 
           <label style={buttonStyle}>
             PDFを選択
@@ -397,7 +419,19 @@ export default function Home() {
 
           <br />
 
-          <h3>経費明細</h3>
+          <h3
+  style={{
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#4E2DA8",
+    marginTop: "24px",
+    marginBottom: "10px",
+    borderLeft: "5px solid #4E2DA8",
+    paddingLeft: "10px"
+  }}
+>
+  📊 経費明細
+</h3>
 
           <label style={buttonStyle}>
             Excelを選択
@@ -433,7 +467,19 @@ export default function Home() {
 
           <br />
 
-          <h3>経費区分マスタ</h3>
+          <h3
+  style={{
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#4E2DA8",
+    marginTop: "24px",
+    marginBottom: "10px",
+    borderLeft: "5px solid #4E2DA8",
+    paddingLeft: "10px"
+  }}
+>
+  📚 経費区分マスタ
+</h3>
 
           <label style={buttonStyle}>
             Excelを選択
@@ -494,6 +540,45 @@ export default function Home() {
               ? "🤖 AI審査中..."
               : "🚀 AI審査開始"}
           </button>
+          {loading && (
+  <div
+    style={{
+      marginTop: "15px"
+    }}
+  >
+    <div
+      style={{
+        fontSize: "13px",
+        marginBottom: "6px",
+        color: "#666"
+      }}
+    >
+      AIが証憑・経費明細を解析しています...
+    </div>
+
+    <div
+      style={{
+        width: "100%",
+        height: "10px",
+        background: "#e5e7eb",
+        borderRadius: "99px",
+        overflow: "hidden"
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(90deg,#4E2DA8,#7a55d9)",
+          animation:
+            "loading-bar 1.5s linear infinite"
+        }}
+      />
+    </div>
+  </div>
+)}
+
         </div>
 
         {/* Right Card */}

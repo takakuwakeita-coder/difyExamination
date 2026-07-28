@@ -145,21 +145,7 @@ if (!body.success) {
   return;
 }
 
-const body =
-  await response.json();
 
-if (!body.success) {
-
-  setResult(
-    JSON.stringify(
-      body,
-      null,
-      2
-    )
-  );
-
-  return;
-}
 
 setResult(
   body.workflow_result

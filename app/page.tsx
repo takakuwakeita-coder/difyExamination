@@ -20,6 +20,16 @@ export default function Home() {
   const [result, setResult] =
     useState("");
 
+  const buttonStyle = {
+    display: "inline-block",
+    padding: "10px 20px",
+    backgroundColor: "#0078d4",
+    color: "white",
+    borderRadius: "6px",
+    cursor: "pointer",
+    marginBottom: "10px"
+  };
+
   const runAudit = async () => {
 
     try {
@@ -35,7 +45,7 @@ export default function Home() {
       }
 
       if (!categoryFile) {
-        alert("経費区分を選択してください");
+        alert("経費区分マスタを選択してください");
         return;
       }
 
@@ -130,9 +140,9 @@ export default function Home() {
 
       setResult(
         body.workflow_result
-            .data
-            .outputs
-            .output
+          .data
+          .outputs
+          .output
       );
 
     } catch (e: any) {
@@ -151,7 +161,9 @@ export default function Home() {
 
     <main
       style={{
-        padding: 30
+        padding: "30px",
+        maxWidth: "1200px",
+        margin: "0 auto"
       }}
     >
 
@@ -159,56 +171,97 @@ export default function Home() {
         補助金経費審査AI
       </h1>
 
-      <br />
+      <hr />
 
       <h3>
         証憑PDF
       </h3>
 
-      <input
-        type="file"
-        accept=".pdf"
-        multiple
-        onChange={e =>
-          setPdfFiles(
-            e.target.files
-          )
-        }
-      />
+      <label style={buttonStyle}>
+        PDFを選択
 
-      <br />
+        <input
+          type="file"
+          accept=".pdf"
+          multiple
+          hidden
+          onChange={(e) =>
+            setPdfFiles(
+              e.target.files
+            )
+          }
+        />
+      </label>
+
+      <div>
+        {
+          pdfFiles
+            ? Array.from(pdfFiles)
+                .map(x => x.name)
+                .join(", ")
+            : "選択されていません"
+        }
+      </div>
+
       <br />
 
       <h3>
         経費明細
       </h3>
 
-      <input
-        type="file"
-        accept=".xlsx"
-        onChange={e =>
-          setDetailFile(
-            e.target.files?.[0] || null
-          )
-        }
-      />
+      <label style={buttonStyle}>
+        Excelを選択
 
-      <br />
+        <input
+          type="file"
+          accept=".xlsx"
+          hidden
+          onChange={(e) =>
+            setDetailFile(
+              e.target.files?.[0]
+                || null
+            )
+          }
+        />
+      </label>
+
+      <div>
+        {
+          detailFile
+            ? detailFile.name
+            : "選択されていません"
+        }
+      </div>
+
       <br />
 
       <h3>
         経費区分マスタ
       </h3>
 
-      <input
-        type="file"
-        accept=".xlsx"
-        onChange={e =>
-          setCategoryFile(
-            e.target.files?.[0] || null
-          )
+      <label style={buttonStyle}>
+        Excelを選択
+
+        <input
+          type="file"
+          accept=".xlsx"
+          hidden
+          onChange={(e) =>
+            setCategoryFile(
+              e.target.files?.[0]
+                || null
+            )
+          }
+        />
+      </label>
+
+      <div>
+        {
+          categoryFile
+            ? categoryFile.name
+            : "選択されていません"
         }
-      />
+      </div>
 
       <br />
       <br />
@@ -216,10 +269,22 @@ export default function Home() {
       <button
         onClick={runAudit}
         disabled={loading}
+        style={{
+          padding: "12px 24px",
+          backgroundColor:
+            "#107c10",
+          color: "white",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontSize: "16px"
+        }}
       >
-        {loading
-          ? "審査中..."
-          : "AI審査開始"}
+        {
+          loading
+            ? "AI審査中..."
+            : "AI審査開始"
+        }
       </button>
 
       <br />
@@ -228,9 +293,12 @@ export default function Home() {
       <textarea
         value={result}
         readOnly
-        rows={40}
+        rows={30}
         style={{
-          width: "100%"
+          width: "100%",
+          padding: "10px",
+          fontFamily:
+            "Consolas, monospace"
         }}
       />
 

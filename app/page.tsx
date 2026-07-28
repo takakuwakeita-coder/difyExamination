@@ -1,5 +1,3 @@
-
-//ssss
 "use client";
 
 import { useState } from "react";
@@ -109,6 +107,12 @@ export default function Home() {
         }
       };
 
+      console.log(
+        "Function URL =",
+        process.env
+          .NEXT_PUBLIC_AZURE_FUNCTION_URL
+      );
+
       const response =
         await fetch(
           process.env
@@ -124,30 +128,16 @@ export default function Home() {
           }
         );
 
-      const body =
-        await response.json();
+      const text =
+        await response.text();
 
-      if (!body.success) {
+      console.log(text);
 
-        setResult(
-          JSON.stringify(
-            body,
-            null,
-            2
-          )
-        );
-
-        return;
-      }
-
-      setResult(
-        body.workflow_result
-          .data
-          .outputs
-          .output
-      );
+      setResult(text);
 
     } catch (e: any) {
+
+      console.error(e);
 
       setResult(
         e.toString()

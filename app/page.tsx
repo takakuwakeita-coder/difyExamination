@@ -9,11 +9,6 @@ export default function Home() {
 
   console.log("ENV CHECK");
 
-console.log(
-
-process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
-
-);
   const [pdfFiles, setPdfFiles] =
     useState<FileList | null>(null);
 
@@ -152,11 +147,28 @@ if (!body.success) {
   return;
 }
 
+const body =
+  await response.json();
+
+if (!body.success) {
+
+  setResult(
+    JSON.stringify(
+      body,
+      null,
+      2
+    )
+  );
+
+  return;
+}
+
 setResult(
   body.workflow_result
-      .data
-      .outputs
-      .output
+      ?.data
+      ?.outputs
+      ?.output
+      ?? "結果なし"
 );
 
     } catch (e: any) {

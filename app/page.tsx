@@ -27,23 +27,18 @@ export default function Home() {
   const buttonStyle = {
   display: "inline-block",
   padding: "12px 24px",
-  backgroundImage:
-  "url('/garp_back.png')",
-backgroundPosition:
-  "bottom center",
-backgroundRepeat:
-  "no-repeat",
-backgroundSize:
-  "contain",
-backgroundColor:
-  "#eef2f7",
-  color: "white",
-  borderRadius: "10px",
+  background: "#4E2DA8",
+  color: "#fff",
+  borderRadius: "8px",
   cursor: "pointer",
-  marginBottom: "10px",
+  fontWeight: 600,
+  width: "160px",
+  textAlign: "center",
+  border: "none",
   boxShadow:
-    "0 4px 20px rgba(0,120,212,0.25)"
+    "0 2px 8px rgba(78,45,168,0.35)"
 };
+
 
   const runAudit = async () => {
 
@@ -178,13 +173,13 @@ setResult(
 
  return (
   <main
-    style={{
-      minHeight: "100vh",
-      background:
-        "linear-gradient(135deg,#4c2ca3,#6f42c1)",
-      padding: "40px"
-    }}
-  >
+  style={{
+    minHeight:"100vh",
+    background:"#f4f5f7",
+    padding:"30px"
+  }}
+>
+  
    {/* GARP Header */}
 
 <div
@@ -268,12 +263,18 @@ setResult(
       {/* 左カラム */}
       <div
         style={{
-          background: "#fff",
-          borderRadius: "20px",
-          padding: "24px",
-          boxShadow:
-            "0 8px 30px rgba(0,0,0,0.08)"
-        }}
+  width: "100%",
+  padding: "16px",
+  background: "#4E2DA8",
+  color: "#fff",
+  border: "none",
+  borderRadius: "8px",
+  fontSize: "16px",
+  fontWeight: 700,
+  cursor: "pointer",
+  boxShadow:
+    "0 6px 16px rgba(78,45,168,0.3)"
+}}
       >
         <h2>📁 ファイル選択</h2>
 

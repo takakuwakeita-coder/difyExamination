@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import { Buffer } from "buffer";
+import ReactMarkdown from "react-markdown";
 
 export default function Home() {
 
@@ -207,14 +208,24 @@ setResult(
       </label>
 
       <div>
+{
+  pdfFiles
+    ? (
+      <ul>
         {
-          pdfFiles
-            ? Array.from(pdfFiles)
-                .map(x => x.name)
-                .join(", ")
-            : "選択されていません"
+          Array.from(pdfFiles).map(
+            (x, i) => (
+              <li key={i}>
+                📄 {x.name}
+              </li>
+            )
+          )
         }
-      </div>
+      </ul>
+    )
+    : "選択されていません"
+}
+</div>
 
       <br />
 
@@ -303,17 +314,10 @@ setResult(
       <br />
       <br />
 
-      <textarea
-        value={result}
-        readOnly
-        rows={30}
-        style={{
-          width: "100%",
-          padding: "10px",
-          fontFamily:
-            "Consolas, monospace"
-        }}
-      />
+    <ReactMarkdown>
+{result}
+
+</ReactMarkdown>
     </main>
   );
 }

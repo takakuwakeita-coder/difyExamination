@@ -136,12 +136,28 @@ process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
           }
         );
 
-      const text =
-        await response.text();
+      const body =
+  await response.json();
 
-      console.log(text);
+if (!body.success) {
 
-      setResult(text);
+  setResult(
+    JSON.stringify(
+      body,
+      null,
+      2
+    )
+  );
+
+  return;
+}
+
+setResult(
+  body.workflow_result
+      .data
+      .outputs
+      .output
+);
 
     } catch (e: any) {
 
@@ -171,11 +187,6 @@ process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
         補助金経費審査AI
       </h1>
 
-      <h3>
-
-{process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL || "NOT FOUND"}
-
-</h3>
 
       <hr />
 
@@ -307,17 +318,6 @@ process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
             "Consolas, monospace"
         }}
       />
-<p>
-
-ENV:
-
-{String(
-
-process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
-
-)}
-
-</p>
     </main>
   );
 }

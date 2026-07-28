@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { Buffer } from "buffer";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Home() {
 
@@ -24,14 +25,17 @@ export default function Home() {
     useState("");
 
   const buttonStyle = {
-    display: "inline-block",
-    padding: "10px 20px",
-    backgroundColor: "#0078d4",
-    color: "white",
-    borderRadius: "6px",
-    cursor: "pointer",
-    marginBottom: "10px"
-  };
+  display: "inline-block",
+  padding: "12px 24px",
+  background:
+    "linear-gradient(135deg,#0078d4,#005ea6)",
+  color: "white",
+  borderRadius: "10px",
+  cursor: "pointer",
+  marginBottom: "10px",
+  boxShadow:
+    "0 4px 20px rgba(0,120,212,0.25)"
+};
 
   const runAudit = async () => {
 
@@ -110,12 +114,6 @@ export default function Home() {
         }
       };
 
-      console.log(
-        "Function URL =",
-        process.env
-          .NEXT_PUBLIC_AZURE_FUNCTION_URL
-      );
-
       const response =
         await fetch(
           "/api/audit",
@@ -170,154 +168,250 @@ setResult(
     }
   };
 
-  return (
-
-    <main
+ return (
+  <main
+    style={{
+      minHeight: "100vh",
+      background:
+        "linear-gradient(135deg,#eef5ff,#f7f9fc)",
+      padding: "40px"
+    }}
+  >
+    {/* ヘッダーカード */}
+    <div
       style={{
+        maxWidth: "1400px",
+        margin: "0 auto 30px auto",
+        background: "#fff",
+        borderRadius: "20px",
         padding: "30px",
-        maxWidth: "1200px",
-        margin: "0 auto"
+        boxShadow:
+          "0 8px 30px rgba(0,0,0,0.08)"
       }}
     >
-
-      <h1>
-        補助金経費審査AI
-      </h1>
-
-
-      <hr />
-
-      <h3>
-        証憑PDF
-      </h3>
-
-      <label style={buttonStyle}>
-        PDFを選択
-
-        <input
-          type="file"
-          accept=".pdf"
-          multiple
-          hidden
-          onChange={(e) =>
-            setPdfFiles(
-              e.target.files
-            )
-          }
-        />
-      </label>
-
-      <div>
-{
-  pdfFiles
-    ? (
-      <ul>
-        {
-          Array.from(pdfFiles).map(
-            (x, i) => (
-              <li key={i}>
-                📄 {x.name}
-              </li>
-            )
-          )
-        }
-      </ul>
-    )
-    : "選択されていません"
-}
-</div>
-
-      <br />
-
-      <h3>
-        経費明細
-      </h3>
-
-      <label style={buttonStyle}>
-        Excelを選択
-
-        <input
-          type="file"
-          accept=".xlsx"
-          hidden
-          onChange={(e) =>
-            setDetailFile(
-              e.target.files?.[0]
-                || null
-            )
-          }
-        />
-      </label>
-
-      <div>
-        {
-          detailFile
-            ? detailFile.name
-            : "選択されていません"
-        }
-      </div>
-
-      <br />
-
-      <h3>
-        経費区分マスタ
-      </h3>
-
-      <label style={buttonStyle}>
-        Excelを選択
-
-        <input
-          type="file"
-          accept=".xlsx"
-          hidden
-          onChange={(e) =>
-            setCategoryFile(
-              e.target.files?.[0]
-                || null
-            )
-          }
-        />
-      </label>
-
-      <div>
-        {
-          categoryFile
-            ? categoryFile.name
-            : "選択されていません"
-        }
-      </div>
-
-      <br />
-      <br />
-
-      <button
-        onClick={runAudit}
-        disabled={loading}
+      <div
         style={{
-          padding: "12px 24px",
-          backgroundColor:
-            "#107c10",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontSize: "16px"
+          display: "flex",
+          alignItems: "center",
+          gap: "20px"
         }}
       >
-        {
-          loading
-            ? "AI審査中..."
-            : "AI審査開始"
-        }
-      </button>
+        <div
+          style={{
+            width: "72px",
+            height: "72px",
+            borderRadius: "18px",
+            background:
+              "linear-gradient(135deg,#0078d4,#6f42c1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "40px"
+          }}
+        >
+          🤖
+        </div>
 
-      <br />
-      <br />
+        <div>
+          <h1
+            style={{
+              margin: 0,
+              fontSize: "36px"
+            }}
+          >
+            補助金経費審査AI
+          </h1>
 
-    <ReactMarkdown>
-{result}
+          <div
+            style={{
+              color: "#666",
+              marginTop: "8px"
+            }}
+          >
+            証憑・経費明細をAIが自動解析し、
+            補助金ルールに基づいて審査します
+          </div>
+        </div>
+      </div>
+    </div>
 
-</ReactMarkdown>
-    </main>
-  );
+    {/* メインエリア */}
+    <div
+      style={{
+        maxWidth: "1400px",
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns:
+          "380px 1fr",
+        gap: "24px"
+      }}
+    >
+      {/* 左カラム */}
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "20px",
+          padding: "24px",
+          boxShadow:
+            "0 8px 30px rgba(0,0,0,0.08)"
+        }}
+      >
+        <h2>📁 ファイル選択</h2>
+
+        <hr />
+
+        <h3>証憑PDF</h3>
+
+        <label style={buttonStyle}>
+          PDFを選択
+
+          <input
+            type="file"
+            accept=".pdf"
+            multiple
+            hidden
+            onChange={(e) =>
+              setPdfFiles(
+                e.target.files
+              )
+            }
+          />
+        </label>
+
+        <div>
+          {pdfFiles ? (
+            Array.from(pdfFiles).map(
+              (x, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background:
+                      "#eef5ff",
+                    padding: "8px",
+                    marginTop: "5px",
+                    borderRadius:
+                      "8px",
+                    fontSize:
+                      "13px"
+                  }}
+                >
+                  📄 {x.name}
+                </div>
+              )
+            )
+          ) : (
+            <div>
+              選択されていません
+            </div>
+          )}
+        </div>
+
+        <br />
+
+        <h3>経費明細</h3>
+
+        <label style={buttonStyle}>
+          Excelを選択
+
+          <input
+            type="file"
+            accept=".xlsx"
+            hidden
+            onChange={(e) =>
+              setDetailFile(
+                e.target.files?.[0] ??
+                  null
+              )
+            }
+          />
+        </label>
+
+        <div>
+          {detailFile?.name ||
+            "選択されていません"}
+        </div>
+
+        <br />
+
+        <h3>経費区分マスタ</h3>
+
+        <label style={buttonStyle}>
+          Excelを選択
+
+          <input
+            type="file"
+            accept=".xlsx"
+            hidden
+            onChange={(e) =>
+              setCategoryFile(
+                e.target.files?.[0] ??
+                  null
+              )
+            }
+          />
+        </label>
+
+        <div>
+          {categoryFile?.name ||
+            "選択されていません"}
+        </div>
+
+        <br />
+
+        <button
+          onClick={runAudit}
+          disabled={loading}
+          style={{
+            width: "100%",
+            padding: "16px",
+            background:
+              "linear-gradient(135deg,#00c853,#009624)",
+            color: "#fff",
+            border: "none",
+            borderRadius: "12px",
+            fontSize: "18px",
+            cursor: "pointer",
+            boxShadow:
+              "0 4px 20px rgba(0,180,0,0.4)"
+          }}
+        >
+          {loading
+            ? "🤖 AI審査中..."
+            : "🚀 AI審査開始"}
+        </button>
+      </div>
+
+      {/* 右カラム */}
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "20px",
+          padding: "30px",
+          minHeight: "900px",
+          width: "100%",
+          overflowY: "auto",
+          boxShadow:
+            "0 8px 30px rgba(0,0,0,0.08)"
+        }}
+      >
+        <h2>📊 審査結果</h2>
+
+        <hr />
+
+        <div
+          style={{
+            lineHeight: "1.9",
+            fontSize: "15px"
+          }}
+        >
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+          >
+            {result}
+          </ReactMarkdown>
+        </div>
+      </div>
+    </div>
+  </main>
+);
 }

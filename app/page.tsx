@@ -7,6 +7,13 @@ import { Buffer } from "buffer";
 
 export default function Home() {
 
+  console.log("ENV CHECK");
+
+console.log(
+
+process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
+
+);
   const [pdfFiles, setPdfFiles] =
     useState<FileList | null>(null);
 
@@ -300,7 +307,17 @@ export default function Home() {
             "Consolas, monospace"
         }}
       />
+<p>
 
+ENV:
+
+{String(
+
+process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
+
+)}
+
+</p>
     </main>
   );
 }

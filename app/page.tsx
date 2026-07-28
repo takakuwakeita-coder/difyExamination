@@ -27,8 +27,16 @@ export default function Home() {
   const buttonStyle = {
   display: "inline-block",
   padding: "12px 24px",
-  background:
-    "linear-gradient(135deg,#0078d4,#005ea6)",
+  backgroundImage:
+  "url('/garp_back.png')",
+backgroundPosition:
+  "bottom center",
+backgroundRepeat:
+  "no-repeat",
+backgroundSize:
+  "contain",
+backgroundColor:
+  "#eef2f7",
   color: "white",
   borderRadius: "10px",
   cursor: "pointer",
@@ -173,67 +181,77 @@ setResult(
     style={{
       minHeight: "100vh",
       background:
-        "linear-gradient(135deg,#eef5ff,#f7f9fc)",
+        "linear-gradient(135deg,#4c2ca3,#6f42c1)",
       padding: "40px"
     }}
   >
     {/* ヘッダーカード */}
-    <div
+
+<div
+  style={{
+    maxWidth: "1400px",
+    margin: "0 auto 30px auto",
+    background:
+      "rgba(255,255,255,0.95)",
+    backdropFilter:
+      "blur(10px)",
+    borderRadius: "24px",
+    padding: "24px 32px",
+    boxShadow:
+      "0 12px 40px rgba(0,0,0,0.08)"
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "24px"
+    }}
+  >
+    <img
+      src="/garp_logo.png"
+      alt="GARP"
       style={{
-        maxWidth: "1400px",
-        margin: "0 auto 30px auto",
-        background: "#fff",
-        borderRadius: "20px",
-        padding: "30px",
-        boxShadow:
-          "0 8px 30px rgba(0,0,0,0.08)"
+        height: "90px",
+        objectFit: "contain"
       }}
-    >
-      <div
+    />
+
+    <div>
+      <h1
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "20px"
+          margin: 0,
+          fontSize: "38px",
+          color: "#4c2ca3",
+          fontWeight: 700
         }}
       >
-        <div
-          style={{
-            width: "72px",
-            height: "72px",
-            borderRadius: "18px",
-            background:
-              "linear-gradient(135deg,#0078d4,#6f42c1)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "40px"
-          }}
-        >
-          🤖
-        </div>
+        補助金経費審査AI
+      </h1>
 
-        <div>
-          <h1
-            style={{
-              margin: 0,
-              fontSize: "36px"
-            }}
-          >
-            補助金経費審査AI
-          </h1>
+      <div
+        style={{
+          marginTop: "8px",
+          color: "#666",
+          fontSize: "15px"
+        }}
+      >
+        GARP申請審査プラットフォーム
+      </div>
 
-          <div
-            style={{
-              color: "#666",
-              marginTop: "8px"
-            }}
-          >
-            証憑・経費明細をAIが自動解析し、
-            補助金ルールに基づいて審査します
-          </div>
-        </div>
+      <div
+        style={{
+          marginTop: "4px",
+          color: "#888",
+          fontSize: "13px"
+        }}
+      >
+        AIによる証憑解析・経費審査・補助金適合性チェック
       </div>
     </div>
+  </div>
+</div>
+
 
     {/* メインエリア */}
     <div
@@ -384,7 +402,7 @@ setResult(
       {/* 右カラム */}
       <div
         style={{
-          background: "#fff",
+          background: "rgba(255,255,255,0.96)",
           borderRadius: "20px",
           padding: "30px",
           minHeight: "900px",

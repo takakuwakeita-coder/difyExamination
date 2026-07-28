@@ -1,3 +1,5 @@
+
+//hhhh
 "use client";
 
 import { useState } from "react";
@@ -115,8 +117,7 @@ export default function Home() {
 
       const response =
         await fetch(
-          process.env
-            .NEXT_PUBLIC_AZURE_FUNCTION_URL!,
+          process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL!,
           {
             method: "POST",
             headers: {
@@ -162,6 +163,12 @@ export default function Home() {
       <h1>
         補助金経費審査AI
       </h1>
+
+      <h3>
+
+{process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL || "NOT FOUND"}
+
+</h3>
 
       <hr />
 

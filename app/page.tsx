@@ -124,7 +124,7 @@ process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL
 
       const response =
         await fetch(
-          process.env.NEXT_PUBLIC_AZURE_FUNCTION_URL!,
+          "/api/audit",
           {
             method: "POST",
             headers: {

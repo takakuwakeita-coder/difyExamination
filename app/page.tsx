@@ -305,22 +305,24 @@ border:"1px solid #d9d9d9",
             Array.from(pdfFiles).map(
               (x, i) => (
                 <div
-                  key={i}
-                  style={{
-  width:"100%",
-  padding:"16px",
-  background:"#ff9800",
-  color:"#fff",
-  border:"none",
-  borderRadius:"6px",
-  fontWeight:700,
-  fontSize:"16px",
-  cursor:"pointer"
-}}
+  key={i}
+  style={{
+    background: "#f5f6fa",
+    border: "1px solid #e5e7eb",
+    color: "#333",
+    padding: "10px 12px",
+    marginTop: "8px",
+    borderRadius: "6px",
+    fontSize: "13px",
+    lineHeight: "1.5",
+    wordBreak: "break-all"
+  }}
+>
+  📄 {x.name}
+</div>
 
-                >
-                  📄 {x.name}
-                </div>
+               
+            
               )
             )
           ) : (
@@ -405,7 +407,7 @@ border:"1px solid #d9d9d9",
       {/* 右カラム */}
       <div
         style={{
-          background: "rgba(255,255,255,0.96)",
+          background:"#fff",
           borderRadius: "6px",
           border: "1px solid #d9d9d9",
           padding: "30px",
@@ -424,15 +426,49 @@ border:"1px solid #d9d9d9",
           style={{
             lineHeight: "1.9",
             fontSize: "15px",
-            border:"1px solid #d9d9d9",
-            
+            overflowX: "auto",
           }}
         >
           <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-          >
-            {result}
-          </ReactMarkdown>
+  remarkPlugins={[remarkGfm]}
+  components={{
+    table: ({ children }) => (
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          marginTop: "20px"
+        }}
+      >
+        {children}
+      </table>
+    ),
+    th: ({ children }) => (
+      <th
+        style={{
+          border: "1px solid #ddd",
+          background: "#f5f5f7",
+          padding: "8px"
+        }}
+      >
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td
+        style={{
+          border: "1px solid #ddd",
+          padding: "8px",
+          verticalAlign: "top"
+        }}
+      >
+        {children}
+      </td>
+    )
+  }}
+>
+  {result}
+</ReactMarkdown>
         </div>
       </div>
     </div>

@@ -146,7 +146,7 @@ export default function Home() {
       const payload = {
         evidences,
 
-        expence_detail: {
+        expense_detail: {
           filename: detailFile.name,
           content:
             Buffer
@@ -156,7 +156,7 @@ export default function Home() {
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         },
 
-        expence_category_master: {
+        expense_category_master: {
           filename: categoryFile.name,
           content:
             Buffer
@@ -632,7 +632,7 @@ const body =
     </div>
   </div>
 )}
-
+</div>
 
         {/* Right Card */}
         <div

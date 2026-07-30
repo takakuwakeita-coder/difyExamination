@@ -176,8 +176,19 @@ export default function Home() {
           }
         );
 
-      const body =
-        await response.json();
+      const text =
+  await response.text();
+
+console.log("API RESPONSE");
+console.log(text);
+
+const body =
+  text
+    ? JSON.parse(text)
+    : {
+        success:false,
+        error:"empty response"
+      };
 
       if (!body.success) {
         setResult(

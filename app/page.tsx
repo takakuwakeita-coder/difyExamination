@@ -528,8 +528,17 @@ const body =
               </div>
             )}
           </div>
-
-          <br />
+<h3
+  style={{
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#4E2DA8",
+    marginTop: "24px",
+    marginBottom: "10px",
+    borderLeft: "5px solid #4E2DA8",
+    paddingLeft: "10px"
+  }}
+>
   📝 審査フェーズ
 </h3>
 
@@ -558,6 +567,8 @@ const body =
     COMPLETION
   </option>
 </select>
+          <br />
+
           <button
             onClick={runAudit}
             disabled={loading}
@@ -621,19 +632,7 @@ const body =
     </div>
   </div>
 )}
-<h3
-  style={{
-    fontSize: "20px",
-    fontWeight: 700,
-    color: "#4E2DA8",
-    marginTop: "24px",
-    marginBottom: "10px",
-    borderLeft: "5px solid #4E2DA8",
-    paddingLeft: "10px"
-  }}
->
 
-        </div>
 
         {/* Right Card */}
         <div

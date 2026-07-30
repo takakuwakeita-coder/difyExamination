@@ -356,7 +356,7 @@ const body =
           gridTemplateColumns: "380px 1fr",
           gap: "24px"
         }}
-      />
+      >
         {/* Left Card */}
         <div
           style={{

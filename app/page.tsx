@@ -530,7 +530,34 @@ const body =
           </div>
 
           <br />
+  📝 審査フェーズ
+</h3>
 
+<select
+  value={reviewPhase}
+  onChange={(e) =>
+    setReviewPhase(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "6px",
+    border: "1px solid #d9d9d9",
+    background: "#fff"
+  }}
+>
+  <option value="PLAN">
+    PLAN
+  </option>
+
+  <option value="EXECUTION">
+    EXECUTION
+  </option>
+
+  <option value="COMPLETION">
+    COMPLETION
+  </option>
+</select>
           <button
             onClick={runAudit}
             disabled={loading}
@@ -605,34 +632,7 @@ const body =
     paddingLeft: "10px"
   }}
 >
-  📝 審査フェーズ
-</h3>
 
-<select
-  value={reviewPhase}
-  onChange={(e) =>
-    setReviewPhase(e.target.value)
-  }
-  style={{
-    width: "100%",
-    padding: "12px",
-    borderRadius: "6px",
-    border: "1px solid #d9d9d9",
-    background: "#fff"
-  }}
->
-  <option value="PLAN">
-    PLAN
-  </option>
-
-  <option value="EXECUTION">
-    EXECUTION
-  </option>
-
-  <option value="COMPLETION">
-    COMPLETION
-  </option>
-</select>
         </div>
 
         {/* Right Card */}

@@ -25,6 +25,9 @@ export default function Home() {
   const [categoryFile, setCategoryFile] =
     useState<File | null>(null);
 
+    const [reviewPhase, setReviewPhase] =
+    useState("PLAN");
+
   const [loading, setLoading] =
     useState(false);
 
@@ -161,7 +164,9 @@ export default function Home() {
               .toString("base64"),
           contentType:
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        }
+        },
+        review_phase:
+        reviewPhase
       };
 
       const response =
@@ -589,7 +594,45 @@ const body =
     </div>
   </div>
 )}
+<h3
+  style={{
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#4E2DA8",
+    marginTop: "24px",
+    marginBottom: "10px",
+    borderLeft: "5px solid #4E2DA8",
+    paddingLeft: "10px"
+  }}
+>
+  📝 審査フェーズ
+</h3>
 
+<select
+  value={reviewPhase}
+  onChange={(e) =>
+    setReviewPhase(e.target.value)
+  }
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "6px",
+    border: "1px solid #d9d9d9",
+    background: "#fff"
+  }}
+>
+  <option value="PLAN">
+    PLAN
+  </option>
+
+  <option value="EXECUTION">
+    EXECUTION
+  </option>
+
+  <option value="COMPLETION">
+    COMPLETION
+  </option>
+</select>
         </div>
 
         {/* Right Card */}
